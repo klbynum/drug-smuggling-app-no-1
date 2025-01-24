@@ -1,0 +1,21 @@
+body{
+    background-color: aqua;
+}
+
+.imageOne{
+    /* Centering the image*/
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 350px;
+    width: 600px;
+
+}
+.h2{
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
+
+.paraOne{
+    text-align: center;
+}
