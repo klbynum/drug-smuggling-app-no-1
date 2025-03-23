@@ -2,3 +2,10 @@
     text-align: center;
     padding: auto;
 }
+.descriptionBox{
+    margin-left: '10px'
+}
+
+.chooseBehaviorF{
+    font-weight: bold;
+}

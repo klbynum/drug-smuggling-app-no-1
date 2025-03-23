@@ -12,7 +12,7 @@ const Home = () => {
       <img className="imageOne"src={image} alt="ORF LOGO" />
       <br />
       <div className='paraOne'>
-        This platform is designed to assist airline employees
+        This platform is designed to assist airline employees and
         TSA officers in identifying and adressing <br />
         suspicious passenger behavior. By working together,
         we ensure a safer environment for everyone 
