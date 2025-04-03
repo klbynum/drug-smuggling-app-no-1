@@ -1,13 +1,16 @@
 import React from 'react';
-import { useState } from 'react';
-import "./CreateReport.css"
+import { useState, useContext } from 'react';
+import "./CreateReport.css";
+import { ReportContext } from '../UrgentAlerts/ReportContext';
 
 
 
 const CreateReport = () => {
-  const [selectedBehaviors, setSelectedBehaviors] = useState('');
+  const { addReport } = useContext(ReportContext);
+  const [selectedBehaviors, setSelectedBehaviors] = useState([]);
   const [description, setDescription] = useState('');
-  const [formSubmitted, setFormSubmitted] = useState('');
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  
   const [availableBehaviors, setAvailableBehaviors] = useState([
     'Unusual Reservations',
     'Purchased through Flagged Travel Agencies',
@@ -70,11 +73,15 @@ const CreateReport = () => {
 
     // Handle form submission logic (sending data to server or console)
     if(userConfirmed){
-      console.log({
-        behavior: selectedBehaviors, 
+      const newReport = {
+        behaviors: selectedBehaviors,
         description,
-      });
-    setFormSubmitted(true);
+        timestamp: new Date().toLocaleString(),
+      };
+      addReport(newReport); // Update the context in real-time
+      setFormSubmitted(true);
+      setSelectedBehaviors([]);
+      setDescription('');
     }
     else {
       // if user cancels, they can continue editing
@@ -104,7 +111,7 @@ const CreateReport = () => {
       </div>
 
       <div style={{ marginTop: '20px' }}>
-        <label htmlFor="description">Description: </label>
+        <label htmlFor="description" onChange={(e) => setDescription(e.target.value)}>Description: </label>
         <textarea className='descriptionBox'
           id="description"
           value={description}
