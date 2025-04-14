@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState, useContext } from 'react';
+import { toast } from 'react-toastify';
 import "./CreateReport.css";
 import { ReportContext } from '../UrgentAlerts/ReportContext';
+import behaviorData from './behaviors.json';
 
 
 
@@ -10,39 +12,13 @@ const CreateReport = () => {
   const [selectedBehaviors, setSelectedBehaviors] = useState([]);
   const [description, setDescription] = useState('');
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [availableBehaviors, setAvailableBehaviors] = useState([]);
+  const [location, setLocation] = useState('');
   
-  const [availableBehaviors, setAvailableBehaviors] = useState([
-    'Unusual Reservations',
-    'Purchased through Flagged Travel Agencies',
-    'Adding Passengers',
-    'Change in Itinerary',
-    'Walk-up Purchase',
-    'Paid in Cash',
-    'Paid with Prepaid Card',
-    'Paid with Third Party Credit Card',
-    'Exact Change',
-    'One-way Flight',
-    'Fake Callback Number(s)',
-    'Missing Phone Number',
-    'Demand/Source Locations',
-    'Missed Flight(s)',
-    'Same Reservations',
-    'New Bags',
-    'Specific Types of Locks',
-    'Heavy Bags (over __lbs)',
-    'Suspicious Bulges',
-    'Inappropriate Number of Bags',
-    'Broken handles or Wheels',
-    'Bag Tampered With',
-    'Use of Masking Agents ',
-    'Guarding luggage',
-    'Failure to Pick Up Luggage',
-    'Luggage but No passenger',
-    'Purchase Bags at Airport',
-    'Crubside Bag Drop',
-    'Dissociation at Drop-off',
-    'Other'
-  ]);
+  useEffect(() =>{
+    setAvailableBehaviors(behaviorData);
+  }, []);
+  
 
   const handleBehaviorChange = (event) => {
     const value = event.target.value;
@@ -66,6 +42,9 @@ const CreateReport = () => {
   const handleRemoveBehavior = (behavior) => {
     setSelectedBehaviors(selectedBehaviors.filter((item)=> item !== behavior));
   }
+  const handleLocationChange = (event) => {
+    setLocation(event.target.value);
+  }
   const handleSubmit = (event) => {
     event.preventDefault();
     // Show confirmation pop-up
@@ -75,12 +54,15 @@ const CreateReport = () => {
     if(userConfirmed){
       const newReport = {
         behaviors: selectedBehaviors,
+        location,
         description,
         timestamp: new Date().toLocaleString(),
       };
       addReport(newReport); // Update the context in real-time
+      toast.success('🚨 New Urgent Alert Submitted!')
       setFormSubmitted(true);
       setSelectedBehaviors([]);
+      setLocation('');
       setDescription('');
     }
     else {
@@ -95,23 +77,38 @@ const CreateReport = () => {
     <form onSubmit={handleSubmit}>
       <div>
         <label className = 'chooseBehaviorF' htmlFor="behavior">Choose up to five behavior(s): </label>
-        <div>
+        <select
+          id="behaviorSelect"
+          onChange={handleBehaviorChange}
+          value=""
+          disabled={selectedBehaviors.length >= 5}
+          style={{display: 'block', marginTop: '10px', padding: '8px', width: '100%' }}
+        >
+          <option value="" disabled> Select a behavior...</option>
           {availableBehaviors.map((behavior, index) => (
-            <label key={index} style={{ display: 'block'}}>
-              <input
-                type="checkbox"
-                value={behavior}
-                onChange={handleBehaviorChange}
-                disabled={selectedBehaviors.length >= 5 && !selectedBehaviors.includes(behavior)} 
-              />
-                {behavior}
-            </label>
+            <option key={index} value={behavior} disabled={selectedBehaviors.includes(behavior)}>
+              {behavior}
+            </option>
           ))}
+        </select>
+        <div>
         </div>
       </div>
-
       <div style={{ marginTop: '20px' }}>
-        <label htmlFor="description" onChange={(e) => setDescription(e.target.value)}>Description: </label>
+        <label htmlFor="location"><h4>Location:</h4></label>
+        <textarea 
+          className='locationBox'
+          id="location"
+          value={location}
+          onChange={handleLocationChange}
+          rows="4"
+          cols="50"
+          placeholder="Enter location here..."
+          style={{ marginTop: '-10px', marginBottom:'10px', marginLeft: '-1px', width: '99%' }}
+        />
+        </div>
+      <div style={{ marginTop: '20px' }}>
+        <label htmlFor="description" onChange={(e) => setDescription(e.target.value)}><h4>Description:</h4></label>
         <textarea className='descriptionBox'
           id="description"
           value={description}
@@ -119,7 +116,7 @@ const CreateReport = () => {
           rows="4"
           cols="50"
           placeholder="Enter details here..."
-          style={{ marginLeft: '10px', width: '98%' }}
+          style={{ marginTop: '-10px', marginBottom:'10px', marginLeft: '-1px', width: '99%' }}
         />
       </div>
       <div style={{ marginTop: '20px' }}>

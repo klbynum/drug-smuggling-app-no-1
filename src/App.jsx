@@ -1,5 +1,7 @@
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import Layout from "./Layout";
 import Home from "./pages/Home/Home.jsx";
 import Login from "./pages/Login/Login.jsx";
@@ -19,6 +21,7 @@ export default function App() {
             <Route path="Urgent Alerts" element={<UrgentAlerts />} />
           </Route>
         </Routes>
+        <ToastContainer position="top-right" autoClose={5000} />
       </BrowserRouter>
     </ReportProvider>
   );

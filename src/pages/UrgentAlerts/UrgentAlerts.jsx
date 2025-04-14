@@ -11,6 +11,7 @@ const UrgentAlerts = () => {
         reports.map((report, index) => (
           <div key={index} style={{ border: '1px solid red', padding: '10px', margin: '10px 0' }}>
             <p><strong>Behaviors:</strong> {report.behaviors.join(', ')}</p>
+            <p><strong>Location:</strong> {report.location}</p>
             <p><strong>Description:</strong> {report.description}</p>
             <p><strong>Timestamp:</strong> {report.timestamp}</p>
           </div>
