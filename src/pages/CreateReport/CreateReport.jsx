@@ -60,6 +60,7 @@ const CreateReport = () => {
       };
       addReport(newReport); // Update the context in real-time
       toast.success('🚨 New Urgent Alert Submitted!')
+      
       setFormSubmitted(true);
       setSelectedBehaviors([]);
       setLocation('');

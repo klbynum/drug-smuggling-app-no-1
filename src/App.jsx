@@ -7,23 +7,67 @@ import Home from "./pages/Home/Home.jsx";
 import Login from "./pages/Login/Login.jsx";
 import CreateReport from "./pages/CreateReport/CreateReport.jsx";
 import UrgentAlerts from "./pages/UrgentAlerts/UrgentAlerts.jsx";
+import PastReports from "./pages/PastReports/PastReports.jsx";
+import PastReport from "./pages/PastReports/PastReport.jsx"
 import { ReportProvider } from "./pages/UrgentAlerts/ReportContext";
+//import { AuthProvider } from "./pages/AuthContext.jsx";
+//import ProtectedRoute from "./context/ProtectedRoute.jsx";
+
 
 export default function App() {
   return (
-    <ReportProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="Login" element={<Login />} />
-            <Route path="Create" element={<CreateReport />} />
-            <Route path="Urgent Alerts" element={<UrgentAlerts />} />
-          </Route>
-        </Routes>
-        <ToastContainer position="top-right" autoClose={5000} />
-      </BrowserRouter>
-    </ReportProvider>
+    //<AuthProvider>
+      <ReportProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route path="Login" element={<Login />} />
+              <Route 
+              index 
+              element={
+              //  <ProtectedRoute>
+                  <Home />
+              //  </ProtectedRoute>
+                } 
+                />
+              <Route 
+                path="CreateReport" 
+                element={
+                 // <ProtectedRoute>
+                    <CreateReport />
+                //  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="Urgent Alerts" 
+                element={
+                 // <ProtectedRoute>
+                    <UrgentAlerts />
+                 // </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="Past Reports" 
+                element={
+                 // <ProtectedRoute>
+                    <PastReports />
+                 // </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/past-report/:id" 
+                element={
+                 // <ProtectedRoute>
+                    <PastReport />
+                 // </ProtectedRoute>
+                } 
+              />
+            </Route>
+          </Routes>
+          <ToastContainer position="top-right" autoClose={5000} />
+        </BrowserRouter>
+      </ReportProvider>
+    //</AuthProvider>
   );
 }
 
