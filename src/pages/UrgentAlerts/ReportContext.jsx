@@ -7,8 +7,26 @@ export const ReportContext = createContext();
 export const ReportProvider = ({ children }) => {
   const [reports, setReports] = useState([]);
 
-  const addReport = (newReport) => {
-    setReports((prevReports) => [newReport, ...prevReports]);
+  const addReport = async (newReport) => {
+    // setReports((prevReports) => [newReport, ...prevReports]);
+    const reportWithId = {
+      ...newReport,
+      id: Date.now(),
+      timestamp: new Date().toLocaleDateString(),
+    };
+
+    setReports((prevReports) => [reportWithId, ...prevReports]);
+
+    try {
+      await fetch('http://localhost:5000/reports', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(reportWithId)
+      });
+      console.log('Report saved to backend.');
+    } catch (error) {
+      console.error('Failed to save report to backend:', error);
+    }
 
     toast.info(
       <div>
@@ -27,7 +45,7 @@ export const ReportProvider = ({ children }) => {
    
     //Remove the report after 30 seconds
     setTimeout(() => {
-      setReports((prevReports) => prevReports.filter(report => report !== newReport));
+      setReports((prevReports) => prevReports.filter(report => report.id !== reportWithId.id));
     }, 30000);
   };
 

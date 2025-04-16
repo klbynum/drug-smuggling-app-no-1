@@ -25,10 +25,13 @@ const Layout = () => {
               <Link to="/Login" onClick={() => setIsOpen(false)}>Login</Link>
             </li>
             <li className="p-2 hover:bg-gray-200">
-              <Link to= "/Create" onClick={() => setIsOpen(false)}>Create Report</Link>
+              <Link to= "/CreateReport" onClick={() => setIsOpen(false)}>Create Report</Link>
             </li>
             <li className="p-2 hover:bg-gray-200">
               <Link to="/Urgent Alerts" onClick={() => setIsOpen(false)}>Urgent Alerts</Link>
+            </li>
+            <li className="p-2 hover:bg-gray-200">
+              <Link to="/Past Reports" onClick={() => setIsOpen(false)}>Past Reports</Link>
             </li>
           </ul>
         )}
