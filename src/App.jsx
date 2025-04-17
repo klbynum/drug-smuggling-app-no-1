@@ -21,12 +21,14 @@ export default function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Layout />}>
+            <Route path="home" element={<Home />} />
+
               <Route path="Login" element={<Login />} />
               <Route 
               index 
               element={
               //  <ProtectedRoute>
-                  <Home />
+                  <Login />
               //  </ProtectedRoute>
                 } 
                 />
