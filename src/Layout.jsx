@@ -13,11 +13,19 @@ const Layout = () => {
   return (
     <>
       <nav className="relative">
-        <button onClick={toggleDropdown} className="p-2 bg-blue-500 text-white rounded-md">
+        <button 
+          onClick={toggleDropdown} 
+          className="p-2 bg-blue-500 text-white rounded-md"
+          aria-expanded={isOpen ? "true" : "false"}
+          aria-controls="dropdown-menu"
+          >
           <IoIosArrowDropdown size={20}/>
         </button>
         {isOpen && (
-          <ul className="absolute top-10 left-0 bg-white shadow-md rounded-md w-40">
+          <ul 
+            id="dropdown-menu"
+            className="absolute top-10 left-0 bg-white shadow-md rounded-md w-40"
+          >
             <li className="p-2 hover:bg-gray-200">
               <Link to="/" onClick={() => setIsOpen(false)}>Home</Link>
             </li>
@@ -31,7 +39,7 @@ const Layout = () => {
               <Link to="/Urgent Alerts" onClick={() => setIsOpen(false)}>Urgent Alerts</Link>
             </li>
             <li className="p-2 hover:bg-gray-200">
-              <Link to="/Past Reports" onClick={() => setIsOpen(false)}>Past Reports</Link>
+              <Link to="/Past-Reports" onClick={() => setIsOpen(false)}>Past Reports</Link>
             </li>
           </ul>
         )}

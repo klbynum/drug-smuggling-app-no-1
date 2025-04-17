@@ -47,7 +47,7 @@ export default function App() {
                 } 
               />
               <Route 
-                path="Past Reports" 
+                path="/Past-Reports" 
                 element={
                  // <ProtectedRoute>
                     <PastReports />

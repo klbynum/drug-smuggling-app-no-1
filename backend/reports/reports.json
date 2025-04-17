@@ -42,5 +42,31 @@
     "description": "jd",
     "timestamp": "4/16/2025",
     "id": 1744824645840
+  },
+  {
+    "behaviors": [
+      "Purchased through Flagged Travel Agencies",
+      "Unusual Reservations",
+      "Adding Passengers",
+      "Change in Itinerary",
+      "Walk-up Purchase"
+    ],
+    "location": "Terminal 1B",
+    "description": "N/A",
+    "timestamp": "4/17/2025",
+    "id": 1744912593932
+  },
+  {
+    "behaviors": [
+      "Purchased through Flagged Travel Agencies",
+      "Unusual Reservations",
+      "Adding Passengers",
+      "Change in Itinerary",
+      "Walk-up Purchase"
+    ],
+    "location": "Terminal 1B",
+    "description": "N/A",
+    "timestamp": "4/17/2025",
+    "id": 1744912593932
   }
 ]
