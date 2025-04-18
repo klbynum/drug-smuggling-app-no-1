@@ -1,17 +1,76 @@
-.imageOne{
-    /* Centering the image*/
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    height: 350px;
-    width: 600px;
-
-}
-.h2{
-    font-family: 'Courier New', Courier, monospace;
-    text-align: center;
+/* Container for the home page content */
+.home-container {
+  padding: 20px;
+  padding-bottom: 80px;
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
-.paraOne{
-    text-align: center;
+/* Header Text */
+.h2 {
+  font-size: 1.5rem;
+  margin-top: 10px;
 }
+
+/* Image Styling */
+.imageOne {
+  width: 100%;
+  max-width: 400px;
+  margin: 20px 0;
+  display: block;
+}
+
+/* Paragraph Text */
+.paraOne {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  text-align: justify;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Bottom Navigation Bar */
+.bottom-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border-top: 1px solid #d1d5db;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Home Buttons */
+.home-button {
+  background-color: #2563eb;
+  color: white;
+  padding: 10px 12px;
+  text-decoration: none;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  min-width: 140px;
+  text-align: center;
+}
+
+.home-button:hover {
+  background-color: #1e40af;
+}
+
+/* Logout Button Styling */
+.logout-button {
+  background-color: #ef4444;
+}
+
+.logout-button:hover {
+  background-color: #b91c1c;
+}
+
+  

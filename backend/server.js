@@ -136,7 +136,7 @@ app.use((req, res) => {
     console.log(`Unhandled request: ${req.method} ${req.originalUrl}`);
     res.status(404).send('Not Found');
   });
-  
+
 const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

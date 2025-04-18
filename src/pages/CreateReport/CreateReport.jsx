@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import './CreateReport.css';
 import { ReportContext } from '../UrgentAlerts/ReportContext';
 import behaviorData from './behaviors.json';
+import locationData from './locations.json';
 
 const CreateReport = () => {
   const { addReport } = useContext(ReportContext);
@@ -10,10 +11,14 @@ const CreateReport = () => {
   const [description, setDescription] = useState('');
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [availableBehaviors, setAvailableBehaviors] = useState([]);
+  const [availableLocations, setAvailableLocations] = useState([]);
   const [location, setLocation] = useState('');
+  const [customLocation, setCustomLocation] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     setAvailableBehaviors(behaviorData);
+    setAvailableLocations(locationData);
   }, []);
 
   const handleBehaviorChange = (event) => {
@@ -34,6 +39,10 @@ const CreateReport = () => {
     const userConfirmed = window.confirm('Are you sure you would like to submit?');
 
     if (userConfirmed) {
+      setIsSubmitting(true);
+      
+      const finalLocation = location === "Other" ? customLocation : location;
+
       const newReport = {
         behaviors: selectedBehaviors,
         location,
@@ -42,9 +51,13 @@ const CreateReport = () => {
       };
       addReport(newReport);
       toast.success('🚨 New Urgent Alert Submitted!');
+      setTimeout(() => {
+        window.location.reload();
+      }, 10000);
       setFormSubmitted(true);
       setSelectedBehaviors([]);
       setLocation('');
+      setCustomLocation('');
       setDescription('');
     } else {
       setFormSubmitted(false);
@@ -79,14 +92,34 @@ const CreateReport = () => {
         <label htmlFor="location" style={{ marginTop: '1rem', display: 'block' }}>
           <h4>Location:</h4>
         </label>
-        <textarea
-          id="location"
+        <select
+          id="locationSelect"
           className="select-box"
           value={location}
           onChange={(e) => setLocation(e.target.value)}
-          placeholder="Enter location here..."
-          rows="4"
-        />
+        >
+          <option value="" disabled>
+            Select a location...
+          </option>
+          {availableLocations.map((loc, index) => (
+            <option key={index} value={loc}>
+              {loc}
+            </option>
+          ))}
+        </select>
+
+        {/* Custom location textbox */}
+        {location === "Other" && (
+          <textarea
+            id="customLocation"
+            className="select-box"
+            value={customLocation}
+            onChange={(e) => setCustomLocation(e.target.value)}
+            placeholder="Enter location..."
+            rows="2"
+            style={{ marginTop: '0.5rem' }}
+          />
+        )}
 
         <label htmlFor="description" style={{ marginTop: '1rem', display: 'block' }}>
           <h4>Description:</h4>
@@ -122,7 +155,7 @@ const CreateReport = () => {
           </div>
         </div>
 
-        <button type="submit" className="submit-button">
+        <button type="submit" className="submit-button" disabled={isSubmitting}>
           Submit
         </button>
       </form>

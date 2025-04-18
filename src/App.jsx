@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Layout from "./Layout";
@@ -20,48 +20,15 @@ export default function App() {
       <ReportProvider>
         <BrowserRouter>
           <Routes>
+            <Route path="/Login" element={<Login />} />
+            
             <Route path="/" element={<Layout />}>
-              <Route path="Login" element={<Login />} />
-              <Route 
-              index 
-              element={
-              //  <ProtectedRoute>
-                  <Home />
-              //  </ProtectedRoute>
-                } 
-                />
-              <Route 
-                path="CreateReport" 
-                element={
-                 // <ProtectedRoute>
-                    <CreateReport />
-                //  </ProtectedRoute>
-                } 
-              />
-              <Route 
-                path="Urgent Alerts" 
-                element={
-                 // <ProtectedRoute>
-                    <UrgentAlerts />
-                 // </ProtectedRoute>
-                } 
-              />
-              <Route 
-                path="/Past-Reports" 
-                element={
-                 // <ProtectedRoute>
-                    <PastReports />
-                 // </ProtectedRoute>
-                } 
-              />
-              <Route 
-                path="/past-report/:id" 
-                element={
-                 // <ProtectedRoute>
-                    <PastReport />
-                 // </ProtectedRoute>
-                } 
-              />
+              <Route index element={<Navigate to="/Login" replace />} />
+              <Route path="/Home" element={<Home />} />
+              <Route path="/CreateReport" element={ <CreateReport /> } />
+              <Route path="/Urgent Alerts" element={ <UrgentAlerts /> } />
+              <Route path="/Past-Reports" element={ <PastReports /> } />
+              <Route path="/past-report/:id" element={ <PastReport /> } />
             </Route>
           </Routes>
           <ToastContainer position="top-right" autoClose={5000} />

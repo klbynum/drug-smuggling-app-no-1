@@ -11,8 +11,8 @@ export const ReportProvider = ({ children }) => {
     // setReports((prevReports) => [newReport, ...prevReports]);
     const reportWithId = {
       ...newReport,
-      id: Date.now(),
-      timestamp: new Date().toLocaleDateString(),
+      id: crypto.randomUUID(),
+      timestamp: new Date().toLocaleString(),
     };
 
     setReports((prevReports) => [reportWithId, ...prevReports]);
