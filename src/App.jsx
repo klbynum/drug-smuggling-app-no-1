@@ -23,6 +23,12 @@ export default function App() {
             <Route path="/Login" element={<Login />} />
             
             <Route path="/" element={<Layout />}>
+              <Route index element={<Navigate to="/Login" replace />} />
+              <Route path="/Home" element={<Home />} />
+              <Route path="/CreateReport" element={ <CreateReport /> } />
+              <Route path="/Urgent Alerts" element={ <UrgentAlerts /> } />
+              <Route path="/Past-Reports" element={ <PastReports /> } />
+              <Route path="/past-report/:id" element={ <PastReport /> } />
             </Route>
           </Routes>
           <ToastContainer position="top-right" autoClose={5000} />
