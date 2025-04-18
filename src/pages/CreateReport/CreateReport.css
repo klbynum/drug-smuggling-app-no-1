@@ -1,11 +1,80 @@
-.p2Font{
-    text-align: center;
-    padding: auto;
-}
-.descriptionBox{
-    margin-left: '10px'
+.form-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #f9fafb;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.chooseBehaviorF{
+h3 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.chooseBehaviorF {
     font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.select-box,
+textarea,
+button {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.25rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.select-box:disabled {
+    background-color: #e5e7eb;
+    cursor: not-allowed;
+}
+
+.selected-behavior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: #f3f4f6;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}
+
+.remove-button {
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.remove-button:hover {
+    background-color: #dc2626;
+}
+
+.submit-button {
+    background-color: #3b82f6;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.submit-button:hover {
+    background-color: #2563eb;
+}
+
+.success-message {
+    text-align: center;
+    margin-top: 1rem;
+    color: green;
 }
