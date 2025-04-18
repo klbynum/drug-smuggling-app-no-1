@@ -2,10 +2,12 @@ import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Login.css';
 import { FaUserAlt, FaLock } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const userRef = useRef();
   const errRef = useRef();
+  const navigate = useNavigate();
 
   const [user, setUser] = useState('');
   const [pwd, setPwd] = useState('');
@@ -41,6 +43,8 @@ const Login = () => {
     setPwd('');
     setErrMsg('');
     setSuccess(user); // store which user logged in
+    navigate("/home");
+
   };
 
   return (
